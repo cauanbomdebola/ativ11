@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensino Médio</title>
+    <link rel="stylesheet" href="ativ13.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="question" id="question"></div>
+        <div class="options">
+      
+            <button id="op1">Clique</button>
+            <button id="op2">Clique</button>
+            <button id="op3">Clique</button>
+            <button id="op4">Clique</button>
+        </div>
+        <div id="cxVidas"></div>
+    </div>
+
+    <script>
+        const questionElement = document.getElementById('question');
+        const options = document.querySelectorAll('.options button');
+        const vidasContainer = document.getElementById('cxVidas');
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let chances = 2;
+
+        const questions = [
+            {
+                
+                question: "Qual das seguintes disciplinas é tipicamente obrigatória no ensino médio?",
+                options: ["Economia doméstica", "Programação de computadores", "Psicologia avançada", "Matemática"],
+                correctAnswer: 3
+            },
+            {
+                question: "Qual é o propósito principal do Exame Nacional do Ensino Médio (ENEM)?",
+                options: ["Selecionar candidatos para cargos públicos", "Avaliar a qualidade das escolas locais", "Fornecer informações de trânsito aos estudantes", "Avaliar a aptidão dos estudantes para o ensino superior"],
+                correctAnswer: 3
+            },
+            {
+                question: "Quais são os anos de duração do ensino médio no sistema educacional tradicional?",
+                options: ["1 ano", "2 anos", "3 anos", "4 anos"],
+                correctAnswer: 2
+            },
+            {
+                question: "O que é o 'vestibular'?",
+                options: ["Um acessório de moda popular entre os estudantes", "Uma festa de formatura do ensino médio", "Um exame para ingresso no ensino superior", "Uma competição esportiva entre escolas"],
+                correctAnswer: 2
+            },
+            {
+                question: "Qual é a finalidade do Projeto de Pesquisa no ensino médio?",
+                options: ["Criar uma nova dieta saudável para estudantes", "Desenvolver uma nova rede social", "Realizar uma investigação científica sobre um tópico específico", "Escrever um romance de ficção científica"],
+                correctAnswer: 2
+            }
+        ];
+
+        function displayQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                const currentQuestion = questions[currentQuestionIndex];
+                questionElement.textContent = currentQuestion.question;
+
+                options.forEach((option, index) => {
+                    option.textContent = currentQuestion.options[index];
+                    option.classList.remove('ativo');
+                    option.addEventListener('click', () => checkAnswer(index, currentQuestion.correctAnswer));
+                });
+            } else {
+                questionElement.textContent = "Fim do Quiz! Pontuação final: " + score;
+            }
+        }
+
+        function checkAnswer(selectedIndex, correctIndex) {
+            if (selectedIndex === correctIndex) {
+                score += 10;
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                chances--;
+                if (chances > 0) {
+                    alert(`Resposta incorreta! Você tem mais ${chances} chance(s).`);
+                } else {
+                    alert("Suas chances acabaram. Reiniciando o Quiz.");
+                    currentQuestionIndex = 0;
+                    score = 0;
+                    chances = 2;
+                }
+            }
+        }
+
+ 
+        displayQuestion();
+    </script>
+</body>
+</html>

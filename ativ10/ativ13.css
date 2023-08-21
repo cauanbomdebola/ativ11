@@ -1,0 +1,52 @@
+body {
+    font-family: 'Poppins', serif;
+    background-color: #f7f4f4;
+}
+
+
+
+.quiz-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.questoes {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.questoes:hover {
+    background-color: #0191CD;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.options button {
+    margin-bottom: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.options button.ativo {
+    font-family: 'Italiana', serif;
+    background-color: #6E2885;
+}
+
+.options button:not(.ativo) {
+    background-color: #000000;
+    color: white;
+}
+
+.options button:not(.ativo):hover {
+    font-family: 'Italiana', serif;
+    background-color: #ffffff;
+    color: black;
+}
+
+#cxVidas img {
+    margin: 5px;
+}
